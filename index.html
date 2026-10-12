@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voice Notes - Record &amp; Transcribe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>🎙️ Voice Notes</h1>
+    <p class="sub">Record your voice and get a live transcript. Runs in your browser.</p>
+
+    <div class="controls">
+      <select id="lang" aria-label="Language">
+        <option value="ur-PK">اردو (Urdu)</option>
+        <option value="en-US" selected>English (US)</option>
+        <option value="en-GB">English (UK)</option>
+        <option value="hi-IN">हिन्दी (Hindi)</option>
+        <option value="ar-SA">العربية (Arabic)</option>
+      </select>
+      <button id="recBtn" class="rec">● Start</button>
+    </div>
+
+    <fieldset class="modes">
+      <legend>Transcription mode</legend>
+      <label class="mode">
+        <input type="radio" name="mode" value="live" checked>
+        <span>⚡ Live</span>
+        <small>Web Speech · needs internet</small>
+      </label>
+      <label class="mode">
+        <input type="radio" name="mode" value="whisper">
+        <span>🔒 Whisper offline</span>
+        <small>private · model downloads once</small>
+      </label>
+    </fieldset>
+
+    <div class="row" id="whisperOpts" hidden>
+      <select id="whisperModel" aria-label="Whisper model">
+        <option value="Xenova/whisper-small" selected>Whisper small — better accuracy (~550 MB download)</option>
+        <option value="Xenova/whisper-tiny">Whisper tiny — faster, smaller (~100 MB download)</option>
+      </select>
+    </div>
+
+    <canvas id="viz" width="600" height="80"></canvas>
+    <div id="status" class="status">Ready</div>
+
+    <h2>Transcript</h2>
+    <div id="transcript" class="box" contenteditable="true" spellcheck="false"
+         data-placeholder="Your words will appear here. You can edit them."></div>
+
+    <div class="row">
+      <button id="copyBtn">Copy</button>
+      <button id="txtBtn">Download .txt</button>
+      <button id="clearBtn">Clear</button>
+    </div>
+
+    <h2>Recording</h2>
+    <audio id="player" controls hidden></audio>
+    <div class="row">
+      <a id="audioLink" class="btn" hidden download>Download audio</a>
+      <button id="whisperBtn" hidden>🔒 Transcribe with Whisper</button>
+    </div>
+    <div id="dlWrap" class="dl" hidden><div id="dlBar"></div></div>
+    <div id="whisperStatus" class="status"></div>
+
+    <p class="note" id="note"></p>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

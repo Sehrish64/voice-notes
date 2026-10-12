@@ -1,0 +1,37 @@
+:root { --bg:#0f1115; --card:#181b22; --text:#e8eaf0; --muted:#8b92a5; --accent:#ff4d5e; --line:#2a2f3a; }
+@media (prefers-color-scheme: light) {
+  :root { --bg:#f5f6f8; --card:#fff; --text:#15171c; --muted:#667085; --line:#dfe3ea; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 680px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { margin: 0 0 4px; font-size: 1.7rem; }
+h2 { font-size: 1rem; margin: 24px 0 8px; color: var(--muted); font-weight: 600; }
+.sub { margin: 0 0 20px; color: var(--muted); }
+.controls { display:flex; gap:10px; }
+select, button, .btn {
+  font: inherit; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line);
+  background: var(--card); color: var(--text); cursor: pointer; text-decoration: none;
+}
+select { flex: 1; }
+button.rec { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; min-width: 120px; }
+button.rec.on { animation: pulse 1.2s infinite; }
+@keyframes pulse { 50% { opacity: .7; } }
+button:disabled { opacity: .55; cursor: wait; }
+.modes { border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 6px 10px 10px; margin: 14px 0 0; display: flex; gap: 10px; }
+.modes legend { font-size: .8rem; color: var(--muted); padding: 0 6px; }
+.mode { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; font-size: .9rem; }
+.mode small { color: var(--muted); font-size: .75rem; }
+.mode:has(input:checked) { border-color: var(--accent); }
+.mode:has(input:disabled) { opacity: .55; cursor: default; }
+.mode input { accent-color: var(--accent); }
+.dl { height: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; margin-top: 10px; overflow: hidden; }
+.dl > div { height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+canvas { width:100%; height:80px; margin-top:14px; background:var(--card); border:1px solid var(--line); border-radius:10px; }
+.status { margin-top: 8px; font-size: .9rem; color: var(--muted); }
+.box { min-height: 160px; padding: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; line-height: 1.7; white-space: pre-wrap; outline: none; }
+.box:empty::before { content: attr(data-placeholder); color: var(--muted); }
+.box .interim { color: var(--muted); }
+.row { display:flex; gap:10px; margin-top:10px; flex-wrap: wrap; }
+audio { width: 100%; }
+.note { margin-top: 20px; font-size: .85rem; color: var(--muted); }
